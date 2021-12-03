@@ -17,7 +17,7 @@ List<Room> rooms = <Room>[
       light: '4 Lights'),
   Room(
       roomName: 'Living room',
-      icon: SvgPicture.asset('assets/svgs/bed.svg'),
+      icon: SvgPicture.asset('assets/svgs/room.svg'),
       light: '2 Lights'),
   Room(
       roomName: 'Kitchen',

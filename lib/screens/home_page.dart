@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:folk_developers/model/rooms_model.dart';
-import 'package:folk_developers/screens/test.dart';
+import 'package:folk_developers/screens/bed_room.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,11 +31,12 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
+                    Spacer(),
                     Text(
                       'Control',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 32,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -43,10 +44,11 @@ class _HomePageState extends State<HomePage> {
                       'Panel',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 32,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Spacer(),
                   ],
                 ),
                 CircleAvatar(
@@ -94,10 +96,30 @@ class _HomePageState extends State<HomePage> {
                     (index) => Center(
                           child: InkWell(
                             onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => BedRoom()));
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Test()));
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration: Duration(milliseconds: 500),
+                                  transitionsBuilder: (context, animation,
+                                      animationTime, child) {
+                                    return SlideTransition(
+                                      position: Tween<Offset>(
+                                              begin: Offset(0, 1),
+                                              end: Offset.zero)
+                                          .animate(animation),
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder:
+                                      (context, animation, animationTime) {
+                                    return BedRoom();
+                                  },
+                                ),
+                              );
                             },
                             child: RoomCard(
                               room: rooms[index],
