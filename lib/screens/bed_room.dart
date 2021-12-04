@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:folk_developers/screens/test.dart';
 
 class BedRoom extends StatefulWidget {
   const BedRoom({Key? key}) : super(key: key);
@@ -26,17 +27,23 @@ class _BedRoomState extends State<BedRoom> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Spacer(),
                       Row(
                         children: [
-                          SvgPicture.asset(
-                              'assets/svgs/Icon ionic-md-arrow-round-back.svg'),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Test()));
+                            },
+                            child: SvgPicture.asset(
+                                'assets/svgs/Icon ionic-md-arrow-round-back.svg'),
+                          ),
                           Text(
                             ' Bed',
                             style: TextStyle(
@@ -71,84 +78,89 @@ class _BedRoomState extends State<BedRoom> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.all(18.0),
-          //   child: Row(
-          //     children: [
-          //       Container(
-          //         decoration: BoxDecoration(
-          //             color: Colors.white,
-          //             borderRadius: BorderRadius.all(Radius.circular(15))),
-          //         height: screenSize.height * 0.08,
-          //         width: screenSize.width * 0.35,
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //             children: [
-          //               SvgPicture.asset('assets/svgs/surface1.svg'),
-          //               Text(
-          //                 'Main Light',
-          //                 style: TextStyle(color: Color(0xff002d67)),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Spacer(),
-          //       Container(
-          //         decoration: BoxDecoration(
-          //             color: Color(0xff002d67),
-          //             borderRadius: BorderRadius.all(Radius.circular(15))),
-          //         height: screenSize.height * 0.08,
-          //         width: screenSize.width * 0.35,
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //             children: [
-          //               SvgPicture.asset(
-          //                   'assets/svgs/furniture_and_household.svg'),
-          //               Text(
-          //                 'Desk Light',
-          //                 style: TextStyle(color: Color(0xffffffff)),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Spacer(),
-          //       Container(
-          //         decoration: BoxDecoration(
-          //             color: Colors.white,
-          //             borderRadius: BorderRadius.all(Radius.circular(15))),
-          //         height: screenSize.height * 0.08,
-          //         width: screenSize.width * 0.35,
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //             children: [
-          //               SvgPicture.asset('assets/svgs/bed.svg'),
-          //               Text(
-          //                 'Bed Room',
-          //                 style: TextStyle(color: Color(0xff002d67)),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          Scrollbar(
-            child: ListView.builder(
-              itemCount: 50,
-              itemBuilder: (context, index) => ListTile(
-                title: Text("Item= ${index + 1}",),
-              ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(children: [
+            Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: screenSize.height * 0.06,
+                    width: screenSize.width * 0.35,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset('assets/svgs/surface1.svg'),
+                            Text(
+                              'Main Light',
+                              maxLines: 1,
+                              style: TextStyle(color: Color(0xff002d67)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: screenSize.width * 0.05,),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xff002d67),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: screenSize.height * 0.06,
+                    width: screenSize.width * 0.35,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                                'assets/svgs/furniture_and_household.svg'),
+                            Text(
+                              'Desk Light',
+                              maxLines: 1,
+                              style: TextStyle(color: Color(0xffffffff)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: screenSize.width * 0.05,),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: screenSize.height * 0.06,
+                    width: screenSize.width * 0.35,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset('assets/svgs/bed (1).svg',),
+                            Text(
+                              'Bed Room',
+                              maxLines: 1,
+                              style: TextStyle(color: Color(0xff002d67)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+          ],),
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
